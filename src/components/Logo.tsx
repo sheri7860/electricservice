@@ -12,7 +12,7 @@ export function Logo({ full = false }: { full?: boolean; light?: boolean }) {
       {full ? (
         <Image src="/brand/logo-full.webp" alt={site.name} width={703} height={240} className="h-16 w-auto sm:h-20" />
       ) : (
-        <Image src="/brand/logo.webp" alt={site.name} width={537} height={168} priority className="h-12 w-auto sm:h-14" />
+        <Image src="/brand/logo.webp" alt={site.name} width={537} height={168} priority className="h-10 w-auto min-[380px]:h-12 sm:h-14" />
       )}
     </Link>
   );

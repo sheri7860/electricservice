@@ -33,7 +33,7 @@ export function Header() {
             <Link href={routes.request} className="btn btn-primary">Request service</Link>
           </div>
           <div className="ml-auto flex items-center gap-2 lg:hidden">
-            <PhoneLink className="btn btn-primary px-4 text-sm" label="Call" />
+            <PhoneLink className="btn btn-primary px-3 text-sm min-[380px]:px-4" label="Call" />
             <MobileNav serviceGroups={serviceGroups} stateGroups={stateGroups} />
           </div>
         </div>

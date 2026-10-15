@@ -35,6 +35,12 @@ export function Hero({ crumbs, eyebrow, title, lead, facts, aside, photo, bleed 
           <div className="absolute left-[-10%] top-[-20%] h-[90%] w-[75%] bg-[radial-gradient(closest-side,rgba(255,194,26,0.16),rgba(255,194,26,0.05)_55%,transparent)]" />
         </div>
       )}
+      {framed && (
+        <div aria-hidden="true" className="absolute inset-0 -z-10 lg:hidden">
+          <Image src={photo.src} alt="" fill priority sizes="100vw" className="object-cover" />
+          <div className="absolute inset-0 bg-ink/85" />
+        </div>
+      )}
       {photo && aside && (
         <div aria-hidden="true" className="absolute inset-y-0 right-0 -z-10 hidden w-[48%] lg:block">
           <Image src={photo.src} alt="" fill priority sizes="48vw" className="object-cover" />
@@ -44,15 +50,15 @@ export function Hero({ crumbs, eyebrow, title, lead, facts, aside, photo, bleed 
       <div className={`container-x grid gap-10 py-9 sm:py-16 xl:py-20 ${twoCol ? "lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center lg:gap-14" : ""}`}>
         <div className={`min-w-0 ${bleed ? "lg:max-w-[560px] xl:max-w-[620px]" : ""}`}>
           {crumbs && <div className="mb-4 sm:mb-6"><Breadcrumbs items={crumbs} /></div>}
-          {eyebrow && <p className="eyebrow mb-3 text-volt sm:mb-5">{eyebrow}</p>}
-          <h1 className="max-w-3xl text-[2.1rem] font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[2.75rem] xl:text-[3.5rem]">{title}</h1>
-          <div className="mt-4 max-w-2xl text-base leading-relaxed text-white/80 sm:mt-6 sm:text-lg">{lead}</div>
-          <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
-            <PhoneLink className={`btn ${emergency ? "btn-alert" : "btn-primary"} min-h-13 px-6 text-base shadow-lg shadow-black/20`} emergency={emergency} />
-            <Link href={requestHref} className="btn btn-outline-light min-h-13 px-6 text-base">Request service online</Link>
+          {eyebrow && <p className="eyebrow mb-3 text-[11px] text-volt min-[380px]:text-xs sm:mb-5">{eyebrow}</p>}
+          <h1 className="max-w-3xl text-[1.8rem] font-bold leading-[1.08] tracking-tight min-[380px]:text-[2.1rem] min-[380px]:leading-[1.05] sm:text-5xl lg:text-[2.75rem] xl:text-[3.5rem]">{title}</h1>
+          <div className="mt-4 max-w-2xl text-[15px] leading-relaxed text-white/80 min-[380px]:text-base sm:mt-6 sm:text-lg">{lead}</div>
+          <div className="mt-6 grid gap-3 sm:mt-8 sm:flex sm:flex-wrap">
+            <PhoneLink className={`btn ${emergency ? "btn-alert" : "btn-primary"} min-h-13 w-full px-6 text-base shadow-lg shadow-black/20 sm:w-auto`} emergency={emergency} />
+            <Link href={requestHref} className="btn btn-outline-light min-h-13 w-full px-6 text-base sm:w-auto">Request service online</Link>
           </div>
           {facts && (
-            <ul className="mt-8 flex flex-wrap gap-2 text-sm text-white/85">
+            <ul className="mt-6 flex flex-wrap gap-2 text-[13px] text-white/85 sm:mt-8 sm:text-sm">
               {facts.map((f) => (
                 <li key={f} className="inline-flex items-center gap-2 rounded-full bg-white/[0.06] px-3.5 py-1.5 ring-1 ring-white/10">
                   <Icon name="check" className="h-4 w-4 text-volt" />{f}
@@ -63,10 +69,10 @@ export function Hero({ crumbs, eyebrow, title, lead, facts, aside, photo, bleed 
         </div>
         {aside && <div className="min-w-0 lg:drop-shadow-2xl">{aside}</div>}
         {framed && (
-          <figure className="relative hidden min-w-0 md:block">
+          <figure className="relative hidden min-w-0 lg:block">
             <div aria-hidden="true" className="absolute -bottom-4 -right-4 h-2/3 w-2/3 rounded-2xl border-2 border-volt/70" />
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl shadow-black/40 ring-1 ring-white/10">
-              <Image src={photo.src} alt={photo.alt} fill priority sizes="(min-width: 1024px) 45vw, 90vw" className="object-cover" />
+              <Image src={photo.src} alt={photo.alt} fill priority sizes="45vw" className="object-cover" />
             </div>
           </figure>
         )}
