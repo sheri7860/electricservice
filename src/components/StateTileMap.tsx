@@ -17,18 +17,22 @@ const tiles: [string, number, number][] = [
 export function StateTileMap() {
   const byCode = new Map(coveredStates.map((s) => [s.code, s]));
   return (
-    <div className="grid grid-cols-12 gap-1 sm:gap-1.5" role="list" aria-label="States with electrician coverage">
+    <ul className="grid grid-cols-12 gap-1 sm:gap-1.5" aria-label="States with electrician coverage">
       {tiles.map(([code, col, row]) => {
         const s = byCode.get(code);
         const style = { gridColumnStart: col + 1, gridRowStart: row + 1 };
-        return s ? (
-          <Link key={code} role="listitem" href={routes.state(s.slug)} title={s.name} style={style} className="grid aspect-square place-items-center rounded-md bg-ink text-[10px] font-bold text-volt transition-colors hover:bg-current hover:text-white sm:text-sm">
-            {code}
-          </Link>
-        ) : (
-          <span key={code} role="listitem" style={style} title={`${code}: no coverage yet`} className="grid aspect-square place-items-center rounded-md bg-paper-deep text-[10px] font-semibold text-muted/70 sm:text-sm">{code}</span>
+        return (
+          <li key={code} style={style} className="aspect-square">
+            {s ? (
+              <Link href={routes.state(s.slug)} title={s.name} aria-label={`Electricians in ${s.name}`} className="grid h-full w-full place-items-center rounded-md bg-ink text-[10px] font-bold text-volt transition-colors hover:bg-current hover:text-white sm:text-sm">
+                {code}
+              </Link>
+            ) : (
+              <span title={`${code}: no coverage yet`} className="grid h-full w-full place-items-center rounded-md bg-paper-deep text-[10px] font-semibold text-muted/70 sm:text-sm">{code}</span>
+            )}
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }
