@@ -1,5 +1,8 @@
 const env = (k: string) => (process.env[k] ?? "").trim();
 
+/** LeadSmart toll-free tracking number for the Electrician offer. Env vars override it. */
+const DEFAULT_PHONE = "(877) 370-0920";
+const DEFAULT_PHONE_E164 = "+18773700920";
 const phone = env("NEXT_PUBLIC_BUSINESS_PHONE");
 
 export const site = {
@@ -7,10 +10,10 @@ export const site = {
   shortName: "Brightlane",
   url: (env("NEXT_PUBLIC_SITE_URL") || "https://brightlaneelectric.com").replace(/\/$/, ""),
   market: "the United States",
-  phone: phone || "(555) 010-0142",
-  phoneE164: env("NEXT_PUBLIC_BUSINESS_PHONE_E164") || "+15550100142",
-  /** True while the fictional 555 placeholder is in use: keep it out of schema. */
-  phoneIsPlaceholder: !phone,
+  phone: phone || DEFAULT_PHONE,
+  phoneE164: env("NEXT_PUBLIC_BUSINESS_PHONE_E164") || DEFAULT_PHONE_E164,
+  /** Real number is set, so it can appear in structured data. */
+  phoneIsPlaceholder: false,
   ppcPhone: env("NEXT_PUBLIC_PPC_TRACKING_PHONE"),
   email: env("NEXT_PUBLIC_BUSINESS_EMAIL"),
   hours: env("NEXT_PUBLIC_BUSINESS_HOURS"),

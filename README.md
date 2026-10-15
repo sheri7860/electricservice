@@ -13,7 +13,7 @@ Built from the SteadWell playbook (`Local Service Lead-Gen Website — Complete 
 | Location pages | 48 state pages (every covered state + DC), 85 metro pages and 255 city + service pages, all with hand-written local content |
 | Guides | 8 |
 | PPC pages | 4 (`/lp/*`, noindex, `?kw=` whitelist) |
-| Temporary phone | `(555) 010-0142` (fictional range). It is kept out of schema. Replace it with the LeadSmart number. |
+| Phone | `(877) 370-0920`, the LeadSmart toll-free tracking number for the Electrician offer (set in `src/content/site.ts`; env vars override it). |
 
 ## Run it
 
@@ -63,7 +63,7 @@ npm run seo:crawl -- http://localhost:3000
 
 ## Before launch
 
-- [ ] Set the real LeadSmart phone (`NEXT_PUBLIC_BUSINESS_PHONE` / `_E164`) and, for PPC, `NEXT_PUBLIC_PPC_TRACKING_PHONE`
+- [x] Set the real LeadSmart phone (`NEXT_PUBLIC_BUSINESS_PHONE` / `_E164`) and, for PPC, `NEXT_PUBLIC_PPC_TRACKING_PHONE`
 - [ ] `LEAD_WEBHOOK_URL` + `LEAD_WEBHOOK_SECRET`. Without them, production returns 503 "please call". In dev, leads go to `.data/leads.jsonl`.
 - [ ] Set `NEXT_PUBLIC_EMERGENCY_24_7=true` only if calls really are answered 24/7
 - [ ] Register the domain; then DNS, HTTPS, Search Console (Domain property), sitemap submission and Bing
