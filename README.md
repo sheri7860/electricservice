@@ -91,4 +91,4 @@ npm run seo:crawl -- http://localhost:3000
 
 ## After launch: IndexNow
 
-`npm run indexnow` notifies Bing and other IndexNow engines (not Google) about new, changed and removed URLs, read from the live sitemaps. Run it after each production deploy; `--dry-run` shows what it would send. The key file is `public/396031539e670d7f5f46c02fa38ace65.txt` and must be live first. State and logs go to `.data/` (git-ignored). Google still relies on the sitemap in Search Console.
+`npm run indexnow` notifies Bing and other IndexNow engines (not Google) about new, changed and removed URLs, read from the live sitemaps. Run it after each production deploy; `--dry-run` shows what it would send. The key file is `public/d0a774b24c72486887c14a5f45494f3e.txt` and must be live first. State and logs go to `.data/` (git-ignored). Google still relies on the sitemap in Search Console.
