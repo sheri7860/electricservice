@@ -143,7 +143,7 @@ for (const p of indexable) {
 
 // Near-duplicate check among location pages: 5-word shingles on main text.
 const sh = (t) => { const w = t.toLowerCase().split(/\W+/).filter(Boolean); const s = new Set(); for (let i = 0; i + 5 <= w.length; i++) s.add(w.slice(i, i + 5).join(" ")); return s; };
-const loc = indexable.filter((p) => p.path.split("/").length >= 6).map((p) => ({ path: p.path, s: sh(p.text) }));
+const loc = indexable.filter((p) => /-in-[a-z-]+-[a-z]{2}\/$/.test(p.path)).map((p) => ({ path: p.path, s: sh(p.text) }));
 let maxSim = 0, maxPair = "";
 for (let i = 0; i < loc.length; i++) for (let j = i + 1; j < loc.length; j++) {
   const a = loc[i].s, b = loc[j].s; let n = 0; for (const x of a) if (b.has(x)) n++;

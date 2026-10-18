@@ -37,9 +37,9 @@ export const photos = {
 
 /** Common upgrades shown as example before/after pairs. Illustrations, not jobs done by the network. */
 export const upgradePairs = [
-  { title: "Fuse box to modern breaker panel", text: "Old fuse boxes and undersized panels are replaced with a breaker panel sized for today's loads, usually with a permit and a utility disconnect.", before: photos.oldFuseBox, after: photos.panels, href: "/electrical-services/panel-upgrade/" },
-  { title: "Dated fixture to new lighting", text: "Swapping old fixtures for new pendants or recessed lights often means a new box rated for the fixture's weight and a dimmer suited to LED bulbs.", before: photos.oldLamp, after: photos.pendants, href: "/electrical-services/lighting-installation/" },
-  { title: "Plain garage to EV-ready garage", text: "A Level 2 charger needs a dedicated 240-volt circuit, and a load calculation to confirm the panel can carry it.", before: photos.garage, after: photos.ev, href: "/electrical-services/ev-charger-installation/" },
+  { title: "Fuse box to modern breaker panel", text: "Old fuse boxes and undersized panels are replaced with a breaker panel sized for today's loads, usually with a permit and a utility disconnect.", before: photos.oldFuseBox, after: photos.panels, href: "/panel-upgrade/" },
+  { title: "Dated fixture to new lighting", text: "Swapping old fixtures for new pendants or recessed lights often means a new box rated for the fixture's weight and a dimmer suited to LED bulbs.", before: photos.oldLamp, after: photos.pendants, href: "/lighting-installation/" },
+  { title: "Plain garage to EV-ready garage", text: "A Level 2 charger needs a dedicated 240-volt circuit, and a load calculation to confirm the panel can carry it.", before: photos.garage, after: photos.ev, href: "/ev-charger-installation/" },
 ];
 
 /** Photo for each service category slug in services.ts. */
