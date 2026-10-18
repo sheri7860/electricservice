@@ -9,7 +9,8 @@
     "typecheck": "tsc --noEmit",
     "data:coverage": "node scripts/build-coverage.mjs",
     "seo:crawl": "node scripts/seo-crawl.mjs",
-    "indexnow": "node scripts/indexnow.mjs"
+    "indexnow": "node scripts/indexnow.mjs",
+    "coverage": "tsx --tsconfig tsconfig.json scripts/coverage-report.tsx"
   },
   "dependencies": {
     "next": "^16.4.0",
@@ -24,6 +25,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3"
   }
 }

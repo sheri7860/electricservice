@@ -3,6 +3,8 @@ import { coveredStates, citiesIn } from "@/content/locations";
 import { cityLocal } from "@/content/cityLocal";
 import { cityServices } from "@/content/cityServices";
 import { articles } from "@/content/articles";
+import { subservices } from "@/content/subservices";
+import { stateServicePages, subCityPages, subStatePages } from "./coverage";
 import { cityGate, cityServiceGate } from "./quality";
 import { routes } from "./routes";
 
@@ -37,8 +39,11 @@ export function indexableUrls() {
   return {
     pages: [routes.home, routes.services, routes.emergency, routes.locations, routes.resources, routes.about, routes.contact, routes.faq, routes.privacy, routes.terms, routes.accessibility],
     services: publishedServices.filter((s) => s.slug !== "emergency-electrician").map((s) => routes.service(s.slug)),
+    subservices: subservices.map((s) => routes.subservice(s.slug)),
     locations: [...coveredStates.map((s) => routes.state(s.slug)), ...cityPages().map((p) => routes.city(p.state.slug, p.city.slug))],
     "city-services": cityServicePages().map((p) => routes.cityService(p.state.slug, p.city.slug, p.service.slug)),
+    "state-services": [...stateServicePages().map((p) => routes.stateService(p.state.slug, p.service.slug)), ...subStatePages().map((p) => routes.stateService(p.state.slug, p.sub.slug))],
+    "sub-locations": subCityPages().map((p) => routes.cityService(p.state.slug, p.city.slug, p.sub.slug)),
     guides: articles.map((a) => routes.guide(a.slug)),
   };
 }

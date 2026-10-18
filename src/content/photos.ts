@@ -1,3 +1,4 @@
+import { getSubservice } from "./subservices";
 /**
  * Site photos (see public/photos/CREDITS.md): AI-generated images supplied by the owner (.webp)
  * and licensed Pexels stock photos (.jpg). Illustrations only, never jobs done by the network.
@@ -67,7 +68,10 @@ const servicePhotoMap: Record<string, Photo> = {
   "smoke-detector-installation": photos.safety,
   "electrical-inspection": photos.portrait,
 };
-export const servicePhoto = (slug: string, category?: string): Photo => servicePhotoMap[slug] ?? (category ? categoryPhoto[category] : undefined) ?? photos.hero;
+const subservicePhotoMap: Record<string, Photo> = { "fuse-box-replacement": photos.oldFuseBox, "outdoor-lighting-installation": photos.lighting };
+/** Service or subservice photo; a subservice falls back to its parent service, then its category. */
+export const servicePhoto = (slug: string, category?: string): Photo =>
+  servicePhotoMap[slug] ?? subservicePhotoMap[slug] ?? servicePhotoMap[getSubservice(slug)?.parent ?? ""] ?? (category ? categoryPhoto[category] : undefined) ?? photos.hero;
 
 /** One distinct photo per guide, so guide cards never repeat. */
 const guidePhotoMap: Record<string, Photo> = {

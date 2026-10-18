@@ -1,4 +1,5 @@
 import { servicePhoto } from "@/content/photos";
+import { subCitiesOf, statePagesOfService, statePagesOfSub } from "@/lib/coverage";
 import { linkify, linkCtx } from "@/lib/linker";
 import { serviceExtras } from "@/content/serviceExtras";
 import Link from "next/link";
@@ -11,6 +12,7 @@ import { Icon } from "./icons";
 import { JsonLd } from "./JsonLd";
 import type { Service } from "@/content/types";
 import { getService, categories } from "@/content/services";
+import { getSubservice, subservicesOf } from "@/content/subservices";
 import { articles } from "@/content/articles";
 import { availability } from "@/content/site";
 import { routes } from "@/lib/routes";
@@ -20,8 +22,12 @@ import { site } from "@/content/site";
 
 export function ServiceTemplate({ s, path, crumbs }: { s: Service; path: string; crumbs: { name: string; path: string }[] }) {
   const cat = categories.find((c) => c.slug === s.category)!;
-  const guides = articles.filter((a) => a.services.includes(s.slug));
-  const related = s.related.map(getService).filter(Boolean) as Service[];
+  const parentSlug = getSubservice(s.slug)?.parent;
+  const guides = articles.filter((a) => a.services.includes(s.slug) || (parentSlug ? a.services.includes(parentSlug) : false));
+  const related = s.related.map((x) => getService(x) ?? getSubservice(x)).filter(Boolean) as Service[];
+  const specialized = subservicesOf(s.slug);
+  const subLocal = subCitiesOf(s.slug);
+  const byState = [...statePagesOfService(s.slug), ...statePagesOfSub(s.slug)].map((x) => x.state);
   const local = citiesForService(s.slug);
   const extra = serviceExtras[s.slug];
   const faqs = [...s.faqs, ...(extra?.faqs ?? [])];
@@ -113,6 +119,18 @@ export function ServiceTemplate({ s, path, crumbs }: { s: Service; path: string;
                 </ul>
               </>
             )}
+            {subLocal.length > 0 && (
+              <>
+                <p className="mb-3 text-muted">Local guides to {s.name.toLowerCase()} in cities where local housing makes it a common job:</p>
+                <div className="mb-6 flex flex-wrap gap-2">{subLocal.map((p) => <Link key={p.state.code + p.city.slug} href={routes.cityService(p.state.slug, p.city.slug, s.slug)} className="chip">{p.city.name}, {p.state.code}</Link>)}</div>
+              </>
+            )}
+            {byState.length > 0 && (
+              <>
+                <p className="mb-3 text-muted">By state:</p>
+                <div className="mb-6 flex flex-wrap gap-2">{byState.map((x) => <Link key={x.code} href={routes.stateService(x.slug, s.slug)} className="chip">{s.name} in {x.name}</Link>)}</div>
+              </>
+            )}
             <p className="mb-4 text-muted">Available through our network in 47 states and DC. Metro guides:</p>
             <div className="flex flex-wrap gap-2">
               {cityPages().map((p) => <Link key={p.state.code + p.city.slug} href={routes.city(p.state.slug, p.city.slug)} className="chip">{p.city.name}, {p.state.code}</Link>)}
@@ -130,6 +148,16 @@ export function ServiceTemplate({ s, path, crumbs }: { s: Service; path: string;
           </div>
         </aside>
       </div>
+
+      {specialized.length > 0 && (
+        <section className="py-14">
+          <div className="container-x">
+            <h2 className="mb-2 text-3xl font-bold">Specialized {s.name.toLowerCase()} services</h2>
+            <p className="mb-6 max-w-2xl text-muted">Specific jobs within {s.name.toLowerCase()}, each with its own guide to signs, process and cost factors.</p>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{specialized.map((x) => <ServiceCard key={x.slug} image={servicePhoto(x.slug, x.category)} href={routes.service(x.slug)} icon={x.icon} title={x.name} text={x.answer.split(". ")[0] + "."} />)}</div>
+          </div>
+        </section>
+      )}
 
       {related.length > 0 && (
         <section className="bg-white py-14">

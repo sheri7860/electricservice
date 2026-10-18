@@ -92,3 +92,20 @@ npm run seo:crawl -- http://localhost:3000
 ## After launch: IndexNow
 
 `npm run indexnow` notifies Bing and other IndexNow engines (not Google) about new, changed and removed URLs, read from the live sitemaps. Run it after each production deploy; `--dry-run` shows what it would send. The key file is `public/d0a774b24c72486887c14a5f45494f3e.txt` and must be live first. State and logs go to `.data/` (git-ignored). Google still relies on the sitemap in Search Console.
+
+## Flat URL architecture (2026-10-18)
+
+Every page has a flat URL, rendered by one catch-all route (`src/app/(site)/[slug]/page.tsx`) from a registry with build-time collision checks (`src/lib/registry.ts`). Old nested URLs 308 to the flat ones.
+
+| Page type | URL | Gate |
+|---|---|---|
+| Service | `/{service}/` | published service |
+| Subservice | `/{subservice}/` | `src/content/subservices.ts` |
+| State | `/electricians-in-{state}/` | live coverage |
+| City | `/electricians-in-{city}-{st}/` | hand-written city content |
+| Service + city | `/{service}-in-{city}-{st}/` | hand-written note in `cityServices*.ts` |
+| Service + state | `/{service}-in-{state}/` | 2+ cities in the state with that service's note |
+| Subservice + city | `/{subservice}-in-{city}-{st}/` | hand-written note in `subCityNotes.ts`, and no parent service page in that city |
+| Subservice + state | `/{subservice}-in-{state}/` | 2+ subservice + city pages in the state |
+
+`npm run coverage` writes `reports/coverage.csv` with every combination, its URL, status (`published`, `needs content`, `not eligible`) and reason, and checks that the registry and matrix agree. To publish more combinations, write real local notes; never lower the gates.

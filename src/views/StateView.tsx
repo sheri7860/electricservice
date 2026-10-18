@@ -1,4 +1,5 @@
 import { photos } from "@/content/photos";
+import { stateServicesFor, subStatesFor } from "@/lib/coverage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Hero, CtaBand } from "@/components/Hero";
@@ -36,6 +37,8 @@ export default async function Page({ params }: { params: Promise<{ state: string
   const metroSlugs = new Set(cityPages().filter((p) => p.state.code === s.code).map((p) => p.city.slug));
   const metros = cities.filter((c) => metroSlugs.has(c.slug));
   const localGuides = cityServicePages().filter((p) => p.state.code === s.code);
+  const stateGuides = stateServicesFor(s.code);
+  const stateSubs = subStatesFor(s.code);
   const top = cities.slice(0, 48);
   const rest = cities.slice(48).sort((a, b) => a.name.localeCompare(b.name));
   const counties = new Set(cities.map((c) => c.county).filter(Boolean)).size;
@@ -79,6 +82,15 @@ export default async function Page({ params }: { params: Promise<{ state: string
                   <h3 className="mb-3 mt-6 text-lg font-bold">Local service guides</h3>
                   <div className="flex flex-wrap gap-2">
                     {localGuides.map((p) => <Link key={p.city.slug + p.service.slug} href={routes.cityService(s.slug, p.city.slug, p.service.slug)} className="chip">{p.service.name} in {p.city.name}</Link>)}
+                  </div>
+                </>
+              )}
+              {(stateGuides.length > 0 || stateSubs.length > 0) && (
+                <>
+                  <h3 className="mb-3 mt-6 text-lg font-bold">Statewide service guides</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {stateGuides.map((p) => <Link key={p.service.slug} href={routes.stateService(s.slug, p.service.slug)} className="chip">{p.service.name} in {s.name}</Link>)}
+                    {stateSubs.map((p) => <Link key={p.sub.slug} href={routes.stateService(s.slug, p.sub.slug)} className="chip">{p.sub.name} in {s.name}</Link>)}
                   </div>
                 </>
               )}

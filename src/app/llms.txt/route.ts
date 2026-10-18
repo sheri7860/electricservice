@@ -5,6 +5,8 @@ import { articles } from "@/content/articles";
 import { cityPages, cityServicePages } from "@/lib/sitemap";
 import { routes } from "@/lib/routes";
 import { sentences } from "@/lib/text";
+import { subservices } from "@/content/subservices";
+import { stateServicePages, subCityPages, subStatePages } from "@/lib/coverage";
 
 export const dynamic = "force-static";
 
@@ -23,6 +25,9 @@ export function GET() {
     link("Contact", routes.contact, "Phone and contact details"),
   ];
   const services = publishedServices.map((s) => link(s.name, routes.service(s.slug), first(s.answer)));
+  const subs = subservices.map((s) => link(s.name, routes.subservice(s.slug), first(s.answer)));
+  const statewide = [...stateServicePages().map((p) => link(`${p.service.name} in ${p.state.name}`, routes.stateService(p.state.slug, p.service.slug))), ...subStatePages().map((p) => link(`${p.sub.name} in ${p.state.name}`, routes.stateService(p.state.slug, p.sub.slug)))];
+  const subLocal = subCityPages().map((p) => link(`${p.sub.name} in ${p.city.name}, ${p.state.code}`, routes.cityService(p.state.slug, p.city.slug, p.sub.slug), first(p.note)));
   const guides = articles.map((a) => link(a.title, routes.guide(a.slug), first(a.answer)));
   const states = coveredStates.map((s) => link(`Electricians in ${s.name}`, routes.state(s.slug)));
   const cities = cityPages().map((p) => link(`Electricians in ${p.city.name}, ${p.state.code}`, routes.city(p.state.slug, p.city.slug), first(p.local.intro)));
@@ -37,10 +42,12 @@ export function GET() {
     "",
     "## Main pages", ...pages, "",
     "## Electrical services", ...services, "",
+    "## Specialized services", ...subs, "",
     "## Guides", ...guides, "",
     "## States", ...states, "",
     "## Cities", ...cities, "",
-    "## Optional", "Local service guides for specific cities:", ...cityServices, "",
+    "## Statewide service guides", ...statewide, "",
+    "## Optional", "Local service guides for specific cities:", ...cityServices, ...subLocal, "",
   ].join("\n");
   return new Response(body, { headers: { "content-type": "text/markdown; charset=utf-8" } });
 }

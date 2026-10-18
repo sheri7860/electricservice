@@ -1,4 +1,5 @@
 import { servicePhoto } from "@/content/photos";
+import { subCityFor, stateServicePages } from "@/lib/coverage";
 import { linkify, linkCtx } from "@/lib/linker";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -59,6 +60,8 @@ export default async function Page({ params }: P) {
   const lead = paras.slice(0, 2).join(" ");
   const body = paras.slice(2).join(" ");
   const siblings = cityServicesFor(s.code, c.slug).filter((x) => x.service.slug !== svc.slug);
+  const subsHere = subCityFor(s.code, c.slug).filter((x) => x.sub.parent === svc.slug);
+  const stateHere = stateServicePages().some((x) => x.state.code === s.code && x.service.slug === svc.slug);
   const otherCities = citiesForService(svc.slug).filter((x) => x.city.slug !== c.slug);
   const guides = articles.filter((a) => a.services.includes(svc.slug)).slice(0, 4);
   const related = svc.related.map(getService).filter(Boolean).slice(0, 4);
@@ -120,11 +123,13 @@ export default async function Page({ params }: P) {
             <FaqList faqs={faqs} />
           </section>
 
-          {(siblings.length > 0 || related.length > 0) && (
+          {(siblings.length > 0 || related.length > 0 || subsHere.length > 0) && (
             <section>
               <h2 className="mb-3 text-xl font-bold">More electrical help in {c.name}</h2>
               <div className="flex flex-wrap gap-2">
+                {subsHere.map((x) => <Link key={x.sub.slug} href={routes.cityService(s.slug, c.slug, x.sub.slug)} className="chip">{x.sub.name} in {c.name}</Link>)}
                 {siblings.map((x) => <Link key={x.service.slug} href={routes.cityService(s.slug, c.slug, x.service.slug)} className="chip">{x.service.name} in {c.name}</Link>)}
+                {stateHere && <Link href={routes.stateService(s.slug, svc.slug)} className="chip">{svc.name} in {s.name}</Link>}
                 {related.map((r) => r && <Link key={r.slug} href={routes.service(r.slug)} className="chip">{r.name}</Link>)}
                 <Link href={routes.city(s.slug, c.slug)} className="chip font-semibold">Electricians in {c.name} →</Link>
               </div>

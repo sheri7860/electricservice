@@ -1,4 +1,5 @@
 import { photos } from "@/content/photos";
+import { subCityFor } from "@/lib/coverage";
 import { linkify, linkCtx } from "@/lib/linker";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -48,6 +49,7 @@ export default async function Page({ params }: { params: Promise<{ state: string
   const siblings = [...metros.filter((p) => p.state.code === s.code), ...metros.filter((p) => p.state.code !== s.code && p.state.region === s.region)].slice(0, 8);
   const localSlugs = new Set(localSvcs.map((x) => x.service.slug));
   const cityGuides = [...articles.filter((a) => a.services.some((x) => localSlugs.has(x))), ...articles].filter((a, i, arr) => arr.indexOf(a) === i).slice(0, 4);
+  const citySubs = subCityFor(s.code, c.slug);
   const nearby = citiesIn(s.code).filter((x) => x.slug !== c.slug && x.county === c.county).slice(0, 12);
   const faqs = [
     { q: `Who issues electrical permits in ${c.name}?`, a: local.permits },
@@ -105,6 +107,12 @@ export default async function Page({ params }: { params: Promise<{ state: string
             <h2 className="mb-4 text-2xl font-bold">{c.name} FAQ</h2>
             <FaqList faqs={faqs} />
           </section>
+          {citySubs.length > 0 && (
+            <section>
+              <h2 className="mb-3 text-xl font-bold">Specialized jobs in {c.name}</h2>
+              <div className="flex flex-wrap gap-2">{citySubs.map((x) => <Link key={x.sub.slug} href={routes.cityService(s.slug, c.slug, x.sub.slug)} className="chip">{x.sub.name} in {c.name}</Link>)}</div>
+            </section>
+          )}
           <section>
             <h2 className="mb-3 text-xl font-bold">Guides</h2>
             <ul className="grid gap-2 sm:grid-cols-2">{cityGuides.map((a) => <li key={a.slug}><Link href={routes.guide(a.slug)} className="link">{a.title}</Link></li>)}</ul>
