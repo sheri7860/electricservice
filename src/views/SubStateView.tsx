@@ -41,7 +41,7 @@ export default async function Page({ params }: P) {
   const otherStates = statePagesOfSub(sub.slug).filter((x) => x.state.code !== s.code);
   const siblings = subStatesFor(s.code).filter((x) => x.sub.slug !== sub.slug);
   const faqs = [
-    { q: `Where in ${s.name} is ${sub.name.toLowerCase()} common?`, a: `Our local notes cover ${cities.map((c) => c.city.name).join(", ")}. ${sentences(cities[0].facts[0])[0]}` },
+    { q: `Where in ${s.name} is ${sub.name.toLowerCase()} common?`, a: `Our local notes cover ${cities.map((c) => c.city.name).join(", ")}. ${sentences(cities[0].note)[0]}` },
     { q: `Who issues permits for ${sub.name.toLowerCase()} in ${s.name}?`, a: `The city or county building department where the home is. ${cities.slice(0, 3).map((c) => `${c.city.name}: ${sentences(c.local.permits)[0]}`).join(" ")}` },
     ...sub.faqs.slice(0, 3),
   ];
@@ -59,7 +59,7 @@ export default async function Page({ params }: P) {
               {cities.map((c) => (
                 <article key={c.city.slug} className="card-top p-5">
                   <h3 className="text-xl font-bold"><Link href={routes.cityService(s.slug, c.city.slug, sub.slug)} className="hover:underline">{sub.name} in {c.city.name}, {s.code}</Link></h3>
-                  <ul className="mt-2 space-y-1.5 text-ink/80">{c.facts.slice(0, 2).map((f) => <li key={f}>{f}</li>)}</ul>
+                  <p className="mt-2 text-ink/80">{sentences(c.note).slice(0, 2).join(" ")}</p>
                 </article>
               ))}
             </div>
