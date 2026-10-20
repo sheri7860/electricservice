@@ -11,6 +11,7 @@ import { cityServicesWave5 } from "./cityServicesWave5";
 import { cityServicesWave6 } from "./cityServicesWave6";
 import { cityServicesWave7 } from "./cityServicesWave7";
 import { cityServicesWave8 } from "./cityServicesWave8";
+import { cityServicesWave9 } from "./cityServicesWave9";
 export const cityServices: Record<string, Record<string, string>> = {
   "NY/new-york": {
     "panel-upgrade": "In New York City, a \"panel upgrade\" in an apartment usually means two separate questions: can the apartment's own panel and feeder carry more load, and can the building's service and riser support it? In prewar co-ops and walk-ups the riser is often the limit, so an electrician may need to coordinate with the managing agent or the building's engineer before anything changes. Work is filed with the Department of Buildings by a licensed master electrician, and most co-op and condo boards also require an alteration agreement, a certificate of insurance and approved plans before work starts. Brownstone owners with their own service deal with Con Edison for the service side.",
@@ -106,3 +107,4 @@ Object.assign(cityServices, cityServicesWave5);
 Object.assign(cityServices, cityServicesWave6);
 Object.assign(cityServices, cityServicesWave7);
 Object.assign(cityServices, cityServicesWave8);
+Object.assign(cityServices, cityServicesWave9);
