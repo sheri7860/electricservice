@@ -60,6 +60,7 @@ export default async function Page({ params }: P) {
                 <article key={c.city.slug} className="card-top p-5">
                   <h3 className="text-xl font-bold"><Link href={routes.cityService(s.slug, c.city.slug, sub.slug)} className="hover:underline">{sub.name} in {c.city.name}, {s.code}</Link></h3>
                   <p className="mt-2 text-ink/80">{sentences(c.note).slice(0, 2).join(" ")}</p>
+                  <p className="mt-2 text-sm text-muted">{c.local.housing}</p>
                 </article>
               ))}
             </div>
