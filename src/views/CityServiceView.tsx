@@ -66,7 +66,9 @@ export default async function Page({ params }: P) {
   const siblings = cityServicesFor(s.code, c.slug).filter((x) => x.service.slug !== svc.slug);
   const subsHere = subCityFor(s.code, c.slug).filter((x) => x.sub.parent === svc.slug);
   const stateHere = stateServicePages().some((x) => x.state.code === s.code && x.service.slug === svc.slug);
-  const otherCities = citiesForService(svc.slug).filter((x) => x.city.slug !== c.slug);
+  // Nearby first: same state, then same region, capped so the block stays page-specific.
+  const allOthers = citiesForService(svc.slug).filter((x) => !(x.state.code === s.code && x.city.slug === c.slug));
+  const otherCities = [...allOthers.filter((x) => x.state.code === s.code), ...allOthers.filter((x) => x.state.code !== s.code && x.state.region === s.region)].slice(0, 12);
   const guides = articles.filter((a) => a.services.includes(svc.slug)).slice(0, 4);
   const related = svc.related.map(getService).filter(Boolean).slice(0, 4);
   const faqs = [
@@ -149,9 +151,10 @@ export default async function Page({ params }: P) {
 
           {otherCities.length > 0 && (
             <section>
-              <h2 className="mb-3 text-xl font-bold">{svc.name} in other cities</h2>
+              <h2 className="mb-3 text-xl font-bold">{svc.name} in nearby cities</h2>
               <div className="flex flex-wrap gap-2">
                 {otherCities.map((x) => <Link key={x.state.code + x.city.slug} href={routes.cityService(x.state.slug, x.city.slug, svc.slug)} className="chip">{x.city.name}, {x.state.code}</Link>)}
+                <Link href={routes.service(svc.slug)} className="chip font-semibold">All {svc.name.toLowerCase()} cities →</Link>
               </div>
             </section>
           )}

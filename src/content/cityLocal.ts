@@ -11,6 +11,9 @@ import { cityLocalWave10 } from "./cityLocalWave10";
 import { cityLocalWave12 } from "./cityLocalWave12";
 import { cityLocalWave16 } from "./cityLocalWave16";
 import { cityLocalWave16b } from "./cityLocalWave16b";
+import { cityLocalWave21 } from "./cityLocalWave21";
+import { cityLocalWave21b } from "./cityLocalWave21b";
+import { cityLocalWave21c } from "./cityLocalWave21c";
 
 /**
  * Hand-written local content. A city page is generated ONLY for cities listed here,
@@ -168,3 +171,4 @@ Object.assign(cityLocal, cityLocalWave9);
 Object.assign(cityLocal, cityLocalWave10);
 Object.assign(cityLocal, cityLocalWave12);
 Object.assign(cityLocal, cityLocalWave16, cityLocalWave16b);
+Object.assign(cityLocal, cityLocalWave21, cityLocalWave21b, cityLocalWave21c);
