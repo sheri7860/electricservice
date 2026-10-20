@@ -9,6 +9,8 @@ import { cityLocalWave8 } from "./cityLocalWave8";
 import { cityLocalWave9 } from "./cityLocalWave9";
 import { cityLocalWave10 } from "./cityLocalWave10";
 import { cityLocalWave12 } from "./cityLocalWave12";
+import { cityLocalWave16 } from "./cityLocalWave16";
+import { cityLocalWave16b } from "./cityLocalWave16b";
 
 /**
  * Hand-written local content. A city page is generated ONLY for cities listed here,
@@ -165,3 +167,4 @@ Object.assign(cityLocal, cityLocalWave8);
 Object.assign(cityLocal, cityLocalWave9);
 Object.assign(cityLocal, cityLocalWave10);
 Object.assign(cityLocal, cityLocalWave12);
+Object.assign(cityLocal, cityLocalWave16, cityLocalWave16b);

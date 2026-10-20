@@ -10,7 +10,8 @@
 const BASE = (process.argv[2] || "http://localhost:3000").replace(/\/$/, "");
 const SITE = (process.env.NEXT_PUBLIC_SITE_URL || "https://brightlaneelectric.com").replace(/\/$/, "");
 
-const get = async (u) => { const r = await fetch(u, { redirect: "manual" }); return { status: r.status, text: r.status === 200 ? await r.text() : "", loc: r.headers.get("location"), robots: r.headers.get("x-robots-tag") }; };
+const fetchRetry = async (u, n = 4) => { for (let i = 0; ; i++) { try { return await fetch(u, { redirect: "manual" }); } catch (e) { if (i >= n) throw e; await new Promise((r) => setTimeout(r, 500 * (i + 1))); } } };
+const get = async (u) => { const r = await fetchRetry(u); return { status: r.status, text: r.status === 200 ? await r.text() : "", loc: r.headers.get("location"), robots: r.headers.get("x-robots-tag") }; };
 const m1 = (re, s) => (s.match(re) || [])[1];
 const strip = (h) => h.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<style[\s\S]*?<\/style>/g, " ").replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/g, " ").replace(/\s+/g, " ").trim();
 const decode = (s) => s?.replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"');
