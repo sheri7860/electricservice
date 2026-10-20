@@ -9,6 +9,8 @@ import { LeadFormBlock } from "@/components/lead/LeadFormBlock";
 import { JsonLd } from "@/components/JsonLd";
 import { Icon } from "@/components/icons";
 import { getService } from "@/content/services";
+import { citySeasons } from "@/content/citySeasons";
+import { cityUtility } from "@/content/cityUtility";
 import { articles } from "@/content/articles";
 import { availability, site } from "@/content/site";
 import { routes } from "@/lib/routes";
@@ -56,6 +58,8 @@ export default async function Page({ params }: P) {
     { name: "Home", path: "/" }, { name: "Locations", path: routes.locations }, { name: s.name, path: routes.state(s.slug) },
     { name: c.name, path: routes.city(s.slug, c.slug) }, { name: svc.name, path },
   ];
+  const season = citySeasons[`${s.code}/${c.slug}`];
+  const utility = cityUtility[`${s.code}/${c.slug}`];
   const paras = sentences(note);
   const lead = paras.slice(0, 2).join(" ");
   const body = paras.slice(2).join(" ");
@@ -84,8 +88,15 @@ export default async function Page({ params }: P) {
               {body && <p>{linkify(body, lc)}</p>}
               <p>{linkify(local.housing, lc)}</p>
             </div>
+            {season && (
+              <>
+                <h3 className="mb-2 mt-8 text-xl font-bold">Weather and the utility in {c.name}</h3>
+                <p className="prose-bl">{season}</p>
+              </>
+            )}
             <dl className="mt-6 grid gap-px overflow-hidden rounded-xl bg-line ring-1 ring-line sm:grid-cols-2">
               <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Permits in {c.name}</dt><dd className="mt-1 text-sm font-semibold">{local.permits}</dd></div>
+              {utility && <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Electric utility</dt><dd className="mt-1 text-sm font-semibold">{utility}</dd></div>}
               <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Where we connect you</dt><dd className="mt-1 text-sm font-semibold">{c.zips.length} ZIP codes in {c.name}, including {local.areas.join(", ")}</dd></div>
             </dl>
           </section>
