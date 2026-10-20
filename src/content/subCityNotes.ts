@@ -9,6 +9,12 @@ import { subCityNotesWave3 } from "./subCityNotesWave3";
 import { subCityNotesWave4 } from "./subCityNotesWave4";
 import { subCityNotesWave5 } from "./subCityNotesWave5";
 import { subCityNotesWave6 } from "./subCityNotesWave6";
+import { subCityNotesWave7 } from "./subCityNotesWave7";
+import { subCityNotesWave8 } from "./subCityNotesWave8";
+import { subCityNotesWave9 } from "./subCityNotesWave9";
+import { subCityNotesWave10 } from "./subCityNotesWave10";
+import { subCityNotesWave11 } from "./subCityNotesWave11";
+import { subCityNotesWave12 } from "./subCityNotesWave12";
 export const subCityNotes: Record<string, Record<string, string>> = {
   "CA/sacramento": {
     "knob-and-tube-replacement": "Knob-and-tube is common in the bungalows and tudors of Land Park, East Sacramento, Curtis Park and Oak Park, most of which were built between the 1910s and the 1940s. It usually surfaces when owners add attic insulation to cope with Sacramento's long run of 100-degree summer days, since insulation should not be packed around active knob-and-tube. Replacement is often paired with a panel upgrade for a heat pump or EV charger, and SMUD, the publicly owned utility, coordinates any meter or service work. Permits inside city limits come from the City of Sacramento Community Development Department; unincorporated areas are permitted by Sacramento County.",
@@ -36,3 +42,9 @@ Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave3)
 Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave4).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
 Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave5).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
 Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave6).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
+Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave7).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
+Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave8).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
+Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave9).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
+Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave10).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
+Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave11).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
+Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave12).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
