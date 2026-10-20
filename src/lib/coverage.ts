@@ -51,8 +51,10 @@ export const subCityPages = () => (_subCity ??= buildSubCity());
 export function subCityGate(p: CityPage, sub: Subservice) {
   const key = `${p.state.code}/${p.city.slug}`;
   const note = subCityNotes[key]?.[sub.slug];
-  if (cityServicePages().some((x) => x.state.code === p.state.code && x.city.slug === p.city.slug && x.service.slug === sub.parent)) return "covered by the parent service page in this city";
   if (!note) return "no hand-written local note yet";
+  // A distinct sub-intent may sit beside its parent page in the same city, but its note must not echo the parent note.
+  const parentNote = cityServices[key]?.[sub.parent];
+  if (parentNote && similarity(note, parentNote) > MAX_SIBLING_SIMILARITY) return "note too similar to the parent service note in this city";
   if (wordCount(note) < MIN_CITY_SERVICE_WORDS) return `note ${wordCount(note)} < ${MIN_CITY_SERVICE_WORDS} words`;
   for (const [k, m] of Object.entries(subCityNotes)) if (k !== key && m[sub.slug] && similarity(note, m[sub.slug]) > MAX_SIBLING_SIMILARITY) return `note too similar to ${k}`;
   return "";
