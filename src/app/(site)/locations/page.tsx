@@ -6,13 +6,13 @@ import { ZipBand } from "@/components/ZipBand";
 import { StateTileMap } from "@/components/StateTileMap";
 import { SectionHeading } from "@/components/ui";
 import { JsonLd } from "@/components/JsonLd";
-import { regions, statesInRegion, citiesIn, zipCount, coveredStates, uncoveredStates, totalCities, totalZips, coverageDate } from "@/content/locations";
+import { regions, statesInRegion, citiesIn, zipCount, coveredStates, uncoveredStates, totalCities, totalZips, coverageDate, STATE_COUNT } from "@/content/locations";
 import { routes } from "@/lib/routes";
 import { pageMeta } from "@/lib/seo";
 import { pageGraph } from "@/lib/schema";
 
-const desc = `Find a licensed electrician in 47 states and Washington, DC. Browse covered states and cities or check your ZIP code.`;
-export const metadata = pageMeta({ title: "Electrician Service Areas: 47 States + DC", description: desc, path: routes.locations });
+const desc = `Find a licensed electrician in ${STATE_COUNT} states and Washington, DC. Browse covered states and cities or check your ZIP code.`;
+export const metadata = pageMeta({ title: `Electrician Service Areas: ${STATE_COUNT} States + DC`, description: desc, path: routes.locations });
 const crumbs = [{ name: "Home", path: "/" }, { name: "Locations", path: routes.locations }];
 const fmt = (n: number) => n.toLocaleString("en-US");
 

@@ -1,6 +1,6 @@
 import { DISCLOSURE, site } from "@/content/site";
 import { publishedServices } from "@/content/services";
-import { coveredStates } from "@/content/locations";
+import { coveredStates, STATE_COUNT } from "@/content/locations";
 import { articles } from "@/content/articles";
 import { cityPages, cityServicePages } from "@/lib/sitemap";
 import { routes } from "@/lib/routes";
@@ -36,7 +36,7 @@ export function GET() {
   const body = [
     `# ${site.name}`,
     "",
-    "> Free referral service connecting US homeowners with independent, licensed electricians in 47 states and Washington, DC.",
+    `> Free referral service connecting US homeowners with independent, licensed electricians in ${STATE_COUNT} states and Washington, DC.`,
     "",
     DISCLOSURE,
     "",

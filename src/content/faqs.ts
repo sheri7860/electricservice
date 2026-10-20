@@ -1,10 +1,11 @@
 import type { Faq } from "./types";
+import { STATE_COUNT } from "@/content/locations";
 import { DISCLOSURE } from "./site";
 
 export const homeFaqs: Faq[] = [
   { q: "Is Brightlane Electric an electrical contractor?", a: "No. Brightlane Electric is a free referral service. Your call or request goes to an independent, licensed electrician who serves your area, and that electrician quotes and performs the work." },
   { q: "How much does it cost to use Brightlane?", a: "Nothing. Calling or sending a request is free. You only pay the electrician if you hire them, at the price you agree on." },
-  { q: "Which areas do you cover?", a: "We currently route electrical calls in 47 states and Washington, DC, covering thousands of cities and ZIP codes. Use the ZIP checker to confirm your address." },
+  { q: "Which areas do you cover?", a: `We currently route electrical calls in ${STATE_COUNT} states and Washington, DC, covering thousands of cities and ZIP codes. Use the ZIP checker to confirm your address.` },
   { q: "Can I get help with an electrical emergency?", a: "Yes, call. If there is smoke or flame, leave and call 911 first. For a burning smell, sparks or a buzzing panel, shut off the circuit if it is safe and call." },
   { q: "Will the electrician be licensed?", a: "Requests are routed to electricians and electrical companies that represent themselves as licensed for their area. Always ask for the license number and check it with your state or local licensing board." },
 ];

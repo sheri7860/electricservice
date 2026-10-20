@@ -1,4 +1,5 @@
 import { servicePhoto } from "@/content/photos";
+import { STATE_COUNT } from "@/content/locations";
 import { subCitiesOf, statePagesOfService, statePagesOfSub } from "@/lib/coverage";
 import { linkify, linkCtx } from "@/lib/linker";
 import { serviceExtras } from "@/content/serviceExtras";
@@ -36,7 +37,7 @@ export function ServiceTemplate({ s, path, crumbs }: { s: Service; path: string;
   return (
     <>
       <Hero photo={servicePhoto(s.slug, s.category)} crumbs={crumbs} eyebrow={cat.name} title={s.h1} emergency={s.isEmergencyCapable && s.slug === "emergency-electrician"} requestHref={`${routes.request}?service=${s.slug}`}
-        lead={<p>{s.answer}</p>} facts={[availability, "Licensed, independent electricians", "47 states + DC"]} />
+        lead={<p>{s.answer}</p>} facts={[availability, "Licensed, independent electricians", `${STATE_COUNT} states + DC`]} />
 
       <nav aria-label="On this page" className="sticky top-[72px] z-20 border-b border-line bg-paper/95 backdrop-blur">
         <div className="container-x flex gap-1 overflow-x-auto py-2 text-sm font-semibold">
@@ -131,7 +132,7 @@ export function ServiceTemplate({ s, path, crumbs }: { s: Service; path: string;
                 <div className="mb-6 flex flex-wrap gap-2">{byState.map((x) => <Link key={x.code} href={routes.stateService(x.slug, s.slug)} className="chip">{s.name} in {x.name}</Link>)}</div>
               </>
             )}
-            <p className="mb-4 text-muted">Available through our network in 47 states and DC. Metro guides:</p>
+            <p className="mb-4 text-muted">Available through our network in {STATE_COUNT} states and DC. Metro guides:</p>
             <div className="flex flex-wrap gap-2">
               {cityPages().map((p) => <Link key={p.state.code + p.city.slug} href={routes.city(p.state.slug, p.city.slug)} className="chip">{p.city.name}, {p.state.code}</Link>)}
               <Link href={routes.locations} className="chip font-semibold">All locations →</Link>

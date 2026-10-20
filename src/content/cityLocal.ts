@@ -5,6 +5,7 @@ import { cityLocalWave4 } from "./cityLocalWave4";
 import { cityLocalWave5 } from "./cityLocalWave5";
 import { cityLocalWave6 } from "./cityLocalWave6";
 import { cityLocalWave7 } from "./cityLocalWave7";
+import { cityLocalWave8 } from "./cityLocalWave8";
 
 /**
  * Hand-written local content. A city page is generated ONLY for cities listed here,
@@ -157,3 +158,4 @@ Object.assign(cityLocal, cityLocalWave4);
 Object.assign(cityLocal, cityLocalWave5);
 Object.assign(cityLocal, cityLocalWave6);
 Object.assign(cityLocal, cityLocalWave7);
+Object.assign(cityLocal, cityLocalWave8);

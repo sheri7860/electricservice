@@ -1,4 +1,5 @@
 import { photos } from "@/content/photos";
+import { STATE_COUNT } from "@/content/locations";
 import { Hero, CtaBand } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { DISCLOSURE } from "@/content/site";
@@ -6,7 +7,7 @@ import { routes } from "@/lib/routes";
 import { pageMeta } from "@/lib/seo";
 import { pageGraph } from "@/lib/schema";
 
-const desc = "How Brightlane Electric works: a free referral service that connects homeowners with independent, licensed electricians in 47 states and DC.";
+const desc = `How Brightlane Electric works: a free referral service that connects homeowners with independent, licensed electricians in ${STATE_COUNT} states and DC.`;
 export const metadata = pageMeta({ title: "How Brightlane Electric Works", description: desc, path: routes.about });
 const crumbs = [{ name: "Home", path: "/" }, { name: "How it works", path: routes.about }];
 

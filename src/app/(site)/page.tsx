@@ -11,7 +11,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { Icon } from "@/components/icons";
 import { PhoneLink } from "@/components/PhoneLink";
 import { categories, servicesIn, getService } from "@/content/services";
-import { coveredStates, totalCities, totalZips } from "@/content/locations";
+import { coveredStates, totalCities, totalZips, STATE_COUNT } from "@/content/locations";
 import { articles } from "@/content/articles";
 import { availability, BRAND_PROMISE } from "@/content/site";
 import { homeFaqs } from "@/content/faqs";
@@ -20,7 +20,7 @@ import { pageMeta } from "@/lib/seo";
 import { pageGraph } from "@/lib/schema";
 import { cityPages } from "@/lib/sitemap";
 
-const desc = "Find a licensed electrician for repairs, panel upgrades, EV chargers, lighting and emergencies. One call connects you with a local pro in 47 states and DC.";
+const desc = `Find a licensed electrician for repairs, panel upgrades, EV chargers, lighting and emergencies. One call connects you with a local pro in ${STATE_COUNT} states and DC.`;
 export const metadata = pageMeta({ title: "Brightlane Electric: Licensed Electricians Nationwide", description: desc, path: "/" });
 
 const problems = [

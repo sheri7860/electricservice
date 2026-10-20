@@ -1,4 +1,5 @@
 import { photos } from "@/content/photos";
+import { STATE_COUNT } from "@/content/locations";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadFormBlock } from "@/components/lead/LeadFormBlock";
@@ -19,7 +20,7 @@ export default function Page() {
         <div className="space-y-4">
           <div className="card-top p-6"><p className="text-sm text-muted">Phone</p><a href={telHref()} data-event="call_click" className="font-display text-3xl font-bold">{site.phone}</a><p className="mt-1 text-sm text-muted">{availability}</p></div>
           {site.email && <div className="card p-6"><p className="text-sm text-muted">Email</p><a href={`mailto:${site.email}`} className="link">{site.email}</a></div>}
-          <div className="card p-6"><p className="text-sm text-muted">Service area</p><p className="font-semibold">47 states and Washington, DC. We are a service-area business with no walk-in office.</p></div>
+          <div className="card p-6"><p className="text-sm text-muted">Service area</p><p className="font-semibold">{STATE_COUNT} states and Washington, DC. We are a service-area business with no walk-in office.</p></div>
         </div>
         <LeadFormBlock />
       </div>

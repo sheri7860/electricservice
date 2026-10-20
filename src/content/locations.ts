@@ -19,6 +19,7 @@ export function slugify(s: string) {
 }
 
 export const stateInfo: StateInfo[] = [
+  st("AK", "Alaska", "pacific", "Long, very cold winters make reliable heating circuits, engine block heater outlets and backup power essential, and many communities are served by small local electric utilities and cooperatives."),
   st("AL", "Alabama", "southeast", "Severe thunderstorms and tornadoes in spring, plus hurricane remnants in the south, make surge protection and generator hookups common requests."),
   st("AR", "Arkansas", "south-central", "Spring storms and summer heat drive surge, storm-repair and AC-circuit calls; many rural homes rely on long service drops."),
   st("AZ", "Arizona", "southwest", "Summer heat puts air conditioners under heavy, constant load, and monsoon storms bring lightning and outages."),
@@ -71,13 +72,14 @@ export const stateInfo: StateInfo[] = [
 
 /** States with no live LeadSmart Electrical coverage yet. Listed honestly on the hub; no state page until coverage exists. */
 export const uncoveredStates = [
-  { code: "AK", name: "Alaska" },
   { code: "SD", name: "South Dakota" },
   { code: "VT", name: "Vermont" },
 ];
 
 const cov = coverage as { dataDate: string; states: Record<string, CoverageCity[]> };
 export const coverageDate = cov.dataDate;
+/** Number of covered states, not counting DC. Use this instead of hard-coding the count. */
+export const STATE_COUNT = Object.keys(cov.states).filter((k) => k !== "DC" && cov.states[k]?.length).length;
 
 /** Only states with live LeadSmart Electrical coverage get pages. */
 export const coveredStates = stateInfo.filter((s) => cov.states[s.code]?.length).sort((a, b) => a.name.localeCompare(b.name));

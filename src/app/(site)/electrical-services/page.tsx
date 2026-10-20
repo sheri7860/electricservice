@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { STATE_COUNT } from "@/content/locations";
 import { photos, categoryPhoto, servicePhoto } from "@/content/photos";
 import { Hero, CtaBand } from "@/components/Hero";
 import { ServiceCard, SectionHeading } from "@/components/ui";
@@ -16,7 +17,7 @@ const crumbs = [{ name: "Home", path: "/" }, { name: "Electrical services", path
 export default function Page() {
   return (
     <>
-      <Hero photo={photos.panels} crumbs={crumbs} eyebrow="All services" title="Residential electrical services" lead={<p>Licensed electricians in our network handle repairs, upgrades, installations and safety work for homes. Pick a service to see the warning signs, what the work involves and what affects the price.</p>} facts={[availability, "47 states + DC"]} />
+      <Hero photo={photos.panels} crumbs={crumbs} eyebrow="All services" title="Residential electrical services" lead={<p>Licensed electricians in our network handle repairs, upgrades, installations and safety work for homes. Pick a service to see the warning signs, what the work involves and what affects the price.</p>} facts={[availability, `${STATE_COUNT} states + DC`]} />
       <div className="container-x py-14">
         {categories.map((c) => (
           <section key={c.slug} id={c.slug} className="mb-14 scroll-mt-28 last:mb-0">

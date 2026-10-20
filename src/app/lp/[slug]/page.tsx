@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { STATE_COUNT } from "@/content/locations";
 import { Logo } from "@/components/Logo";
 import { PhoneLink } from "@/components/PhoneLink";
 import { FaqList } from "@/components/FaqList";
@@ -41,7 +42,7 @@ export default async function Page({ params, searchParams }: { params: Promise<{
               <h1 className="text-3xl font-bold sm:text-5xl">{h1}</h1>
               <p className="mt-4 text-lg text-white/85">{s.answer}</p>
               <ul className="mt-6 grid gap-2 sm:grid-cols-2">{l.bullets.map((b) => <li key={b} className="flex gap-2"><Icon name="check" className="h-5 w-5 shrink-0 text-volt" />{b}</li>)}</ul>
-              <p className="mt-6 text-sm text-white/70">{availability} · Independent, licensed electricians in 47 states + DC</p>
+              <p className="mt-6 text-sm text-white/70">{availability} · Independent, licensed electricians in {STATE_COUNT} states + DC</p>
               <div className="mt-6"><PhoneLink ppc className="btn btn-primary" label={`Call ${phone}`} /></div>
             </div>
             <div className="text-ink"><LeadFormBlock defaultService={s.slug} /></div>
