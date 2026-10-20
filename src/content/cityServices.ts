@@ -15,6 +15,8 @@ import { cityServicesWave9 } from "./cityServicesWave9";
 import { cityServicesWave10 } from "./cityServicesWave10";
 import { cityServicesWave12 } from "./cityServicesWave12";
 import { cityServicesWave13 } from "./cityServicesWave13";
+import { cityServicesWave14 } from "./cityServicesWave14";
+import { cityServicesWave14b } from "./cityServicesWave14b";
 import { cityServicesWave11 } from "./cityServicesWave11";
 export const cityServices: Record<string, Record<string, string>> = {
   "NY/new-york": {
@@ -116,3 +118,4 @@ Object.assign(cityServices, cityServicesWave10);
 for (const [k, v] of Object.entries(cityServicesWave11)) cityServices[k] = { ...cityServices[k], ...v };
 Object.assign(cityServices, cityServicesWave12);
 for (const [k, v] of Object.entries(cityServicesWave13)) cityServices[k] = { ...cityServices[k], ...v };
+for (const w of [cityServicesWave14, cityServicesWave14b]) for (const [k, v] of Object.entries(w)) cityServices[k] = { ...cityServices[k], ...v };
