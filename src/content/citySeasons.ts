@@ -11,6 +11,7 @@ import { citySeasonsWave7 } from "./citySeasonsWave7";
 import { citySeasonsWave8 } from "./citySeasonsWave8";
 import { citySeasonsWave9 } from "./citySeasonsWave9";
 import { citySeasonsWave10 } from "./citySeasonsWave10";
+import { citySeasonsWave12 } from "./citySeasonsWave12";
 export const citySeasons: Record<string, string> = {
   "NY/new-york": "Summer is the hardest season on New York apartment wiring: heat waves bring every window unit on at once, and older buildings see tripped breakers, blown fuses and warm outlets. Con Edison serves most of the city, and during extreme heat it sometimes asks customers to cut use to protect the network. Winter nor'easters are less likely to cut power in the boroughs, where much of the distribution system runs underground, than in the suburbs, but basement flooding from storms has reached panels and meter rooms in low-lying neighborhoods. If water has touched electrical equipment, leave it off until it is checked.",
   "CA/los-angeles": "Los Angeles is mild for most of the year, but late-summer and fall heat waves push air-conditioning loads up sharply, and Santa Ana wind events raise wildfire risk across the region. During those periods, utilities can shut off power in high-risk areas, which is why battery storage and generator inlets are increasingly common in hillside and canyon neighborhoods. LADWP serves the City of Los Angeles, while most other cities in the county are served by Southern California Edison, and each utility has its own rules for service upgrades, solar interconnection and meter work. Earthquakes are the other local factor worth planning for.",
@@ -40,3 +41,4 @@ Object.assign(citySeasons, citySeasonsWave7);
 Object.assign(citySeasons, citySeasonsWave8);
 Object.assign(citySeasons, citySeasonsWave9);
 Object.assign(citySeasons, citySeasonsWave10);
+Object.assign(citySeasons, citySeasonsWave12);

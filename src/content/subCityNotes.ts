@@ -5,6 +5,8 @@
  * Use only verified local facts (permit office, utility, housing stock). Never swap city names.
  */
 import { subCityNotesMore } from "./subCityNotesMore";
+import { subCityNotesWave3 } from "./subCityNotesWave3";
+import { subCityNotesWave4 } from "./subCityNotesWave4";
 export const subCityNotes: Record<string, Record<string, string>> = {
   "CA/sacramento": {
     "knob-and-tube-replacement": "Knob-and-tube is common in the bungalows and tudors of Land Park, East Sacramento, Curtis Park and Oak Park, most of which were built between the 1910s and the 1940s. It usually surfaces when owners add attic insulation to cope with Sacramento's long run of 100-degree summer days, since insulation should not be packed around active knob-and-tube. Replacement is often paired with a panel upgrade for a heat pump or EV charger, and SMUD, the publicly owned utility, coordinates any meter or service work. Permits inside city limits come from the City of Sacramento Community Development Department; unincorporated areas are permitted by Sacramento County.",
@@ -28,3 +30,5 @@ export const subCityNotes: Record<string, Record<string, string>> = {
 };
 
 Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesMore).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
+Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave3).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));
+Object.assign(subCityNotes, Object.fromEntries(Object.entries(subCityNotesWave4).map(([k, v]) => [k, { ...subCityNotes[k], ...v }])));

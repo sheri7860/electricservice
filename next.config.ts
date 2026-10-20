@@ -25,7 +25,11 @@ const config: NextConfig = {
     ];
   },
   async redirects() {
-    return [{ source: "/:path*", has: [{ type: "host", value: "www.brightlaneelectric.com" }], destination: "https://brightlaneelectric.com/:path*", permanent: true }];
+    return [
+      { source: "/:path*", has: [{ type: "host", value: "www.brightlaneelectric.com" }], destination: "https://brightlaneelectric.com/:path*", permanent: true },
+      // Retired 2026-10-20: too close to the Portland, OR page; the city page covers rewiring.
+      { source: "/home-rewiring-in-portland-me", destination: "/electricians-in-portland-me/", permanent: true },
+    ];
   },
 };
 export default config;
