@@ -8,7 +8,7 @@ import { stateServicePages, subCityPages, subStatePages } from "./coverage";
 import { cityGate, cityServiceGate } from "./quality";
 import { routes } from "./routes";
 
-export const CONTENT_DATE = "2026-10-15";
+export const CONTENT_DATE = "2026-10-21";
 
 /** Indexed city pages: hand-written local content that passes the quality gate AND live coverage. */
 let _cityPages: ReturnType<typeof buildCityPages> | undefined;
