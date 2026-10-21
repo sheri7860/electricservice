@@ -77,7 +77,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             <p className="font-display text-xl font-bold">Need {main.name.toLowerCase()}?</p>
             <p className="mb-4 mt-1 text-sm text-white/75">Connect with a licensed electrician who serves your ZIP code.</p>
             <PhoneLink className="btn btn-primary w-full whitespace-normal" label={`Call ${site.phone}`} />
-            <Link href={`${routes.request}?service=${main.slug}`} className="btn btn-outline-light mt-2 w-full">Request service</Link>
+            <PhoneLink className="btn btn-outline-light mt-2 w-full" />
           </div>
           <div className="card p-5">
             <p className="mb-2 font-display font-bold">Related services</p>

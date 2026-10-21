@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { routes } from "@/lib/routes";
+import { site, telHref } from "@/content/site";
 
 let cache: Promise<Record<string, [string, string]>> | null = null;
 export const loadZips = () => (cache ??= fetch("/data/zips.json").then((r) => r.json()));
@@ -24,7 +25,7 @@ export function ZipChecker({ dark = false }: { dark?: boolean }) {
         <button className="btn btn-primary">Check</button>
       </form>
       <p aria-live="polite" className={`mt-3 min-h-6 text-sm ${dark ? "text-white/85" : "text-ink/80"}`}>
-        {res?.ok && (<>✓ Electricians serve <b>{res.city}, {res.st}</b> ({zip}). <Link href={`${routes.request}?zip=${zip}`} className={dark ? "font-semibold text-volt underline" : "link"}>Request service</Link></>)}
+        {res?.ok && (<>✓ Electricians serve <b>{res.city}, {res.st}</b> ({zip}). <a href={telHref()} data-event="call_click" className={dark ? "font-semibold text-volt underline" : "link"}>Call {site.phone}</a></>)}
         {res && !res.ok && (/^\d{5}$/.test(zip) ? <>We don&apos;t have a confirmed electrician for {zip} yet. Call and we&apos;ll check nearby options.</> : <>Enter a 5-digit ZIP code.</>)}
       </p>
     </div>

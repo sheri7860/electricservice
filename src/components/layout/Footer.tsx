@@ -30,7 +30,7 @@ export function Footer() {
         <div>
           <p className="mb-3 font-display font-bold text-white">Company</p>
           <ul className="space-y-2 text-sm">
-            {[["All locations", routes.locations], ["Emergency electrician", routes.emergency], ["Guides", routes.resources], ["How it works", routes.about], ["FAQ", routes.faq], ["Contact", routes.contact], ["Request service", routes.request]].map(([n, h]) => (
+            {[["All locations", routes.locations], ["Emergency electrician", routes.emergency], ["Guides", routes.resources], ["How it works", routes.about], ["FAQ", routes.faq], ["Contact", routes.contact]].map(([n, h]) => (
               <li key={h}><Link href={h} className="hover:text-volt">{n}</Link></li>
             ))}
           </ul>
@@ -52,11 +52,10 @@ export function Footer() {
   );
 }
 
-export function MobileActionBar({ requestHref = routes.request }: { requestHref?: string }) {
+export function MobileActionBar(_props: { requestHref?: string }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-2 gap-2 border-t border-line bg-white/95 p-2.5 backdrop-blur lg:hidden">
-      <a href={telHref()} className="btn btn-primary" data-event="call_click">Call now</a>
-      <Link href={requestHref} className="btn btn-secondary">Request service</Link>
+    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 p-2.5 backdrop-blur lg:hidden">
+      <a href={telHref()} className="btn btn-primary w-full" data-event="call_click">Call now</a>
     </div>
   );
 }

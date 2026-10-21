@@ -55,7 +55,6 @@ export function Hero({ crumbs, eyebrow, title, lead, facts, aside, photo, bleed 
           <div className="mt-4 max-w-2xl text-[15px] leading-relaxed text-white/80 min-[380px]:text-base sm:mt-6 sm:text-lg">{lead}</div>
           <div className="mt-6 grid gap-3 sm:mt-8 sm:flex sm:flex-wrap">
             <PhoneLink className={`btn ${emergency ? "btn-alert" : "btn-primary"} min-h-13 w-full px-6 text-base shadow-lg shadow-black/20 sm:w-auto`} emergency={emergency} />
-            <Link href={requestHref} className="btn btn-outline-light min-h-13 w-full px-6 text-base sm:w-auto">Request service online</Link>
           </div>
           {facts && (
             <ul className="mt-6 flex flex-wrap gap-2 text-[13px] text-white/85 sm:mt-8 sm:text-sm">
@@ -82,7 +81,7 @@ export function Hero({ crumbs, eyebrow, title, lead, facts, aside, photo, bleed 
   );
 }
 
-export function CtaBand({ title = "Need an electrician?", text = "Call now, or send a request and a licensed electrician who serves your ZIP code will contact you." }: { title?: string; text?: string }) {
+export function CtaBand({ title = "Need an electrician?", text = "Call now and we connect you with a licensed electrician who serves your ZIP code." }: { title?: string; text?: string }) {
   return (
     <section className="bg-volt">
       <div className="container-x flex flex-col items-start justify-between gap-6 py-12 md:flex-row md:items-center">
@@ -92,7 +91,6 @@ export function CtaBand({ title = "Need an electrician?", text = "Call now, or s
         </div>
         <div className="flex flex-wrap gap-3">
           <PhoneLink className="btn btn-secondary" />
-          <Link href={routes.request} className="btn btn-outline">Request service</Link>
         </div>
       </div>
     </section>

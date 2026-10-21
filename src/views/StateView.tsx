@@ -99,7 +99,7 @@ export default async function Page({ params }: { params: Promise<{ state: string
 
           <section>
             <h2 className="mb-2 text-2xl font-bold">Covered cities and towns in {s.name}</h2>
-            <p className="mb-5 text-muted">{fmt(cities.length)} {cities.length === 1 ? "location" : "locations"}, largest first. Any covered ZIP code can call or request service.</p>
+            <p className="mb-5 text-muted">{fmt(cities.length)} {cities.length === 1 ? "location" : "locations"}, largest first. Any covered ZIP code can call for service.</p>
             <ul className="columns-2 gap-6 text-sm sm:columns-3">
               {top.map((c) => <li key={c.slug} className="mb-1.5 break-inside-avoid">{metroSlugs.has(c.slug) ? <Link href={routes.city(s.slug, c.slug)} className="link">{c.name}</Link> : c.name} <span className="text-muted">({c.zips.length} ZIP{c.zips.length > 1 ? "s" : ""})</span></li>)}
             </ul>

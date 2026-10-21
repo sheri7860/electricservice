@@ -28,7 +28,7 @@ export default function Page() {
           <div className="card p-4 sm:p-6"><StateTileMap /></div>
           <div className="prose-bl">
             <h2 className="mb-3 text-2xl font-bold">How service areas work</h2>
-            <p>Each independent electrician in our network chooses the ZIP codes they serve. When you call or send a request, it goes to an electrician who covers your address. Coverage changes as electricians join or adjust their areas; it was last refreshed on {coverageDate}.</p>
+            <p>Each independent electrician in our network chooses the ZIP codes they serve. When you call, we connect you with an electrician who covers your address. Coverage changes as electricians join or adjust their areas; it was last refreshed on {coverageDate}.</p>
             <h3 className="mb-2 text-lg font-bold">What changes from place to place</h3>
             <p>Licensing is set by the state, and in some places by the city or county. Permits are issued by your city or county building department, and some cities run their own electrical codes. The electrician you hire handles the permit and inspection.</p>
             <h3 className="mb-2 text-lg font-bold">Weather and housing</h3>

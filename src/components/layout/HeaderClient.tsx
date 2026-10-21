@@ -115,9 +115,8 @@ export function MobileNav({ serviceGroups, stateGroups }: { serviceGroups: Group
                 <Link key={h} href={h} className="block border-b border-line py-3 font-semibold">{n}</Link>
               ))}
             </div>
-            <div className="grid grid-cols-2 gap-2 border-t border-line p-4">
-              <a href={telHref()} className="btn btn-primary" data-event="call_click">Call</a>
-              <Link href={routes.request} className="btn btn-secondary">Request</Link>
+            <div className="border-t border-line p-4">
+              <a href={telHref()} className="btn btn-primary w-full" data-event="call_click">Call now</a>
             </div>
           </div>
         </div>,

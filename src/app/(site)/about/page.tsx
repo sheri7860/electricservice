@@ -18,7 +18,7 @@ export default function Page() {
       <div className="container-x max-w-3xl py-14">
         <div className="prose-bl text-lg">
           <h2 className="mb-3 text-2xl font-bold">What we are</h2>
-          <p>Brightlane Electric is a call and request service for homeowners. When you call or fill in the form, we connect you with an independent electrician or electrical company that serves your ZIP code.</p>
+          <p>Brightlane Electric is a phone referral service for homeowners. When you call, we connect you with an independent electrician or electrical company that serves your ZIP code.</p>
           <h2 className="mb-3 mt-8 text-2xl font-bold">What we are not</h2>
           <p>We are not an electrical contractor. We do not employ electricians, set prices, pull permits or perform any work. The electrician you speak with is an independent business responsible for their own license, insurance, pricing and workmanship.</p>
           <h2 className="mb-3 mt-8 text-2xl font-bold">How to choose well</h2>

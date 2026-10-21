@@ -20,11 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return pageMeta({ title: l.h1, description: s.metaDescription, path: routes.lp(l.slug), canonical: routes.service(s.slug), noindex: true });
 }
 
-export default async function Page({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ kw?: string }> }) {
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const l = getLanding((await params).slug);
   if (!l) notFound();
-  const kw = (await searchParams).kw;
-  const h1 = (kw && Object.hasOwn(l.kw, kw) ? l.kw[kw] : l.h1); // whitelist only, never reflect raw text
+  const h1 = l.h1; // static export: no per-keyword headline
   const s = getService(l.service)!;
   const phone = site.ppcPhone || site.phone;
   return (

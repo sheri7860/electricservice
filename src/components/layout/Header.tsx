@@ -30,7 +30,7 @@ export function Header() {
               <span className="block text-xs text-white/60">Talk to an electrician</span>
               <a href={`tel:${site.phoneE164}`} data-event="call_click" className="font-display text-lg font-bold hover:text-volt">{site.phone}</a>
             </div>
-            <Link href={routes.request} className="btn btn-primary">Request service</Link>
+            <PhoneLink className="btn btn-primary" label="Call now" />
           </div>
           <div className="ml-auto flex items-center gap-2 lg:hidden">
             <PhoneLink className="btn btn-primary px-3 text-sm min-[380px]:px-4" label="Call" />

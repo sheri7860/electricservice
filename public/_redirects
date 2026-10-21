@@ -1,0 +1,9 @@
+# Cloudflare Pages redirects. The www -> apex redirect is a zone rule, not listed here.
+# Online requests were retired; send old form URLs to the contact page.
+/request-service/ /contact/ 301
+/request-service /contact/ 301
+/thank-you/ /contact/ 301
+/thank-you /contact/ 301
+# Retired 2026-10-20: too close to the Portland, OR page; the city page covers rewiring.
+/home-rewiring-in-portland-me/ /electricians-in-portland-me/ 301
+/home-rewiring-in-portland-me /electricians-in-portland-me/ 301
