@@ -6,4 +6,4 @@ node_modules
 next-env.d.ts
 *.tsbuildinfo
 .claude
-out/
+/out/
