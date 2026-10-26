@@ -1,3 +1,4 @@
+import { nearbyTowns } from "@/lib/nearby";
 import { photos } from "@/content/photos";
 import { subCityFor } from "@/lib/coverage";
 import { linkify, linkCtx } from "@/lib/linker";
@@ -99,6 +100,7 @@ export default async function Page({ params }: { params: Promise<{ state: string
               <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">{c.name} at a glance</dt><dd className="mt-1 font-semibold">{local.county ?? c.county + " County"}, {s.name}</dd></div>
               <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">ZIP codes covered</dt><dd className="mt-1 font-semibold">{c.zips.length}</dd></div>
               <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Neighborhoods</dt><dd className="mt-1 font-semibold">{local.areas.join(", ")}</dd></div>
+              {nearbyTowns(s.code, c.slug).length > 0 && <div className="bg-white p-4 sm:col-span-2"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Nearby towns also served</dt><dd className="mt-1 text-sm font-semibold">{nearbyTowns(s.code, c.slug).join(", ")}</dd></div>}
               <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Permits</dt><dd className="mt-1 font-semibold">Pulled by the electrician</dd></div>
               {cityUtility[`${s.code}/${c.slug}`] && <div className="bg-white p-4 sm:col-span-2"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Electric utility</dt><dd className="mt-1 font-semibold">{cityUtility[`${s.code}/${c.slug}`]}</dd><p className="mt-1 text-sm text-muted">The utility owns the meter and service drop, so service upgrades and storm reconnections are scheduled with it.</p></div>}
             </dl>

@@ -1,3 +1,4 @@
+import { nearbyTowns } from "@/lib/nearby";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Hero, CtaBand } from "@/components/Hero";
@@ -69,6 +70,7 @@ export default async function Page({ params }: P) {
             <dl className="mt-6 grid gap-px overflow-hidden rounded-xl bg-line ring-1 ring-line sm:grid-cols-2">
               <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Permits in {c.name}</dt><dd className="mt-1 text-sm font-semibold">{local.permits}</dd></div>
               <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Electric utility</dt><dd className="mt-1 text-sm font-semibold">{utility ?? "Local utility"}</dd></div>
+              {nearbyTowns(s.code, c.slug).length > 0 && <div className="bg-white p-4 sm:col-span-2"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Nearby towns also served</dt><dd className="mt-1 text-sm font-semibold">{sub.name} is also available in {nearbyTowns(s.code, c.slug).join(", ")}</dd></div>}
             </dl>
           </section>
 

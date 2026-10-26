@@ -1,3 +1,4 @@
+import { nearbyTowns } from "@/lib/nearby";
 import { servicePhoto } from "@/content/photos";
 import { subCityFor, stateServicePages } from "@/lib/coverage";
 import { linkify, linkCtx } from "@/lib/linker";
@@ -100,6 +101,7 @@ export default async function Page({ params }: P) {
               <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Permits in {c.name}</dt><dd className="mt-1 text-sm font-semibold">{local.permits}</dd></div>
               {utility && <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Electric utility</dt><dd className="mt-1 text-sm font-semibold">{utility}</dd></div>}
               <div className="bg-white p-4"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Where we connect you</dt><dd className="mt-1 text-sm font-semibold">{c.zips.length} ZIP codes in {c.name}, including {local.areas.join(", ")}</dd></div>
+              {nearbyTowns(s.code, c.slug).length > 0 && <div className="bg-white p-4 sm:col-span-2"><dt className="text-xs font-bold uppercase tracking-wider text-muted">Nearby towns also served</dt><dd className="mt-1 text-sm font-semibold">{svc.name} is also available in {nearbyTowns(s.code, c.slug).join(", ")}</dd></div>}
             </dl>
           </section>
 
