@@ -12,7 +12,7 @@ import { articles } from "@/content/articles";
 import { availability } from "@/content/site";
 import { citiesIn } from "@/content/locations";
 import { routes } from "@/lib/routes";
-import { pageMeta } from "@/lib/seo";
+import { pageMeta, ctaTitle, ctaDescription } from "@/lib/seo";
 import { sentences } from "@/lib/text";
 import { pageGraph } from "@/lib/schema";
 import { cityPages, cityServicesFor } from "@/lib/sitemap";
@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   const { state, city } = await params;
   const p = find(state, city)!;
   return pageMeta({
-    title: `Electricians in ${p.city.name}, ${p.state.code}`,
-    description: `Connect with a licensed electrician in ${p.city.name}, ${p.state.code} for repairs, panel upgrades, EV chargers and emergencies. ${p.city.zips.length} ZIP codes covered.`,
+    title: ctaTitle(`Electricians in ${p.city.name}, ${p.state.code}`),
+    description: ctaDescription("an electrician", `${p.city.name}, ${p.state.code}`, `Repairs, panels, EV chargers and emergencies in ${p.local.areas.slice(0, 3).join(", ")} and ${p.city.zips.length} ZIP codes.`),
     path: routes.city(p.state.slug, p.city.slug),
   });
 }

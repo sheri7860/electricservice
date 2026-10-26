@@ -10,7 +10,7 @@ import { getRegion } from "@/content/locations";
 import { availability, site } from "@/content/site";
 import { cityUtility } from "@/content/cityUtility";
 import { routes } from "@/lib/routes";
-import { pageMeta } from "@/lib/seo";
+import { pageMeta, ctaTitle, ctaDescription } from "@/lib/seo";
 import { sentences } from "@/lib/text";
 import { pageGraph, ORG_ID } from "@/lib/schema";
 import { stateServicePages, stateServicesFor, statePagesOfService, subStatesFor } from "@/lib/coverage";
@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: P) {
   const names = p.cities.map((c) => c.city.name);
   const list = names.length > 2 ? `${names.slice(0, -1).join(", ")} and ${names.at(-1)}` : names.join(" and ");
   return pageMeta({
-    title: `${p.service.name} in ${p.state.name}`,
-    description: `${p.service.name} across ${p.state.name}: local permit offices, utilities and housing notes for ${list}. Connect with a licensed electrician.`.slice(0, 160),
+    title: ctaTitle(`${p.service.name} in ${p.state.name}`),
+    description: ctaDescription(p.service.name, p.state.name, `Local notes for ${list}.`),
     path: routes.stateService(p.state.slug, p.service.slug),
   });
 }

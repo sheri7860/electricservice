@@ -14,7 +14,7 @@ import { cityUtility } from "@/content/cityUtility";
 import { articles } from "@/content/articles";
 import { availability, site } from "@/content/site";
 import { routes } from "@/lib/routes";
-import { pageMeta } from "@/lib/seo";
+import { pageMeta, ctaTitle, ctaDescription } from "@/lib/seo";
 import { sentences } from "@/lib/text";
 import { pageGraph, ORG_ID } from "@/lib/schema";
 import { cityServicePages, cityServicesFor, citiesForService } from "@/lib/sitemap";
@@ -38,8 +38,8 @@ export async function generateMetadata({ params }: P) {
   const { state, city, service } = await params;
   const p = find(state, city, service)!;
   return pageMeta({
-    title: `${p.service.name} in ${p.city.name}, ${p.state.code}`,
-    description: describe(p.note, p.city.name),
+    title: ctaTitle(`${p.service.name} in ${p.city.name}, ${p.state.code}`),
+    description: ctaDescription(p.service.name, `${p.city.name}, ${p.state.code}`, sentences(p.note)[0]),
     path: routes.cityService(p.state.slug, p.city.slug, p.service.slug),
   });
 }

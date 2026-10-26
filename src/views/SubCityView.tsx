@@ -10,7 +10,7 @@ import { getService } from "@/content/services";
 import { availability, site } from "@/content/site";
 import { cityUtility } from "@/content/cityUtility";
 import { routes } from "@/lib/routes";
-import { pageMeta } from "@/lib/seo";
+import { pageMeta, ctaTitle, ctaDescription } from "@/lib/seo";
 import { sentences } from "@/lib/text";
 import { pageGraph, ORG_ID } from "@/lib/schema";
 import { cityServicesFor } from "@/lib/sitemap";
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: P) {
   const p = find(state, city, sub)!;
   const first = sentences(p.note)[0];
   const d = first.length <= 150 ? first : first.slice(0, 147).replace(/\s+\S*$/, "") + "…";
-  return pageMeta({ title: `${p.sub.name} in ${p.city.name}, ${p.state.code}`, description: d.length < 110 ? `${d} ${p.sub.name} in ${p.city.name}.` : d, path: routes.cityService(p.state.slug, p.city.slug, p.sub.slug) });
+  return pageMeta({ title: ctaTitle(`${p.sub.name} in ${p.city.name}, ${p.state.code}`), description: ctaDescription(p.sub.name, `${p.city.name}, ${p.state.code}`, d), path: routes.cityService(p.state.slug, p.city.slug, p.sub.slug) });
 }
 
 export default async function Page({ params }: P) {
