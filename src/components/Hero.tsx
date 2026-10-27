@@ -29,7 +29,7 @@ export function Hero({ crumbs, eyebrow, title, lead, facts, aside, photo, bleed 
       {photo && bleed && (
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <div className="absolute inset-y-0 right-0 w-full lg:w-[64%]">
-            <Image src={photo.src} alt="" fill priority quality={85} sizes="(min-width: 1024px) 64vw, 100vw" className="object-cover object-[70%_center]" />
+            <Image src={photo.src} alt={photo.alt} fill priority quality={85} sizes="(min-width: 1024px) 64vw, 100vw" className="object-cover object-[70%_center]" />
           </div>
           <div className="absolute inset-0 bg-ink/80 lg:bg-transparent lg:bg-gradient-to-r lg:from-ink lg:from-[36%] lg:via-ink/75 lg:via-[55%] lg:to-ink/10" />
           <div className="absolute left-[-10%] top-[-20%] h-[90%] w-[75%] bg-[radial-gradient(closest-side,rgba(255,194,26,0.16),rgba(255,194,26,0.05)_55%,transparent)]" />
@@ -37,13 +37,13 @@ export function Hero({ crumbs, eyebrow, title, lead, facts, aside, photo, bleed 
       )}
       {framed && (
         <div aria-hidden="true" className="absolute inset-0 -z-10 lg:hidden">
-          <Image src={photo.src} alt="" fill priority sizes="100vw" className="object-cover" />
+          <Image src={photo.src} alt={photo.alt} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-ink/85" />
         </div>
       )}
       {photo && aside && (
         <div aria-hidden="true" className="absolute inset-y-0 right-0 -z-10 hidden w-[48%] lg:block">
-          <Image src={photo.src} alt="" fill priority sizes="48vw" className="object-cover" />
+          <Image src={photo.src} alt={photo.alt} fill priority sizes="48vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/55 to-ink/10" />
         </div>
       )}
